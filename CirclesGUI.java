@@ -15,7 +15,7 @@ public class CirclesGUI {
     private static JPanel mainPanel, navPanel, inputPanel, buttonPanel;
     private static JLabel radLabel, colLabel;
     private static JTextField navField, radField, colField;
-    private static JButton upButton, downButton, addButton, modifyButton, saveButton;
+    private static JButton upButton, downButton, addButton, modifyButton, saveButton, averageButton;
 
     private static int count = 0, nav = 0;
     private static Circle circles[] = new Circle[20];
@@ -54,10 +54,12 @@ public class CirclesGUI {
         addButton = new JButton("Add");
         modifyButton = new JButton("Modify");
         saveButton = new JButton("Save");
+        averageButton = new JButton("Average");
         saveButton.setEnabled(false);
         buttonPanel.add(addButton);
         buttonPanel.add(modifyButton);
         buttonPanel.add(saveButton);
+        buttonPanel.add(averageButton);
 
         mainPanel.add(navPanel);
         mainPanel.add(inputPanel);
@@ -123,6 +125,7 @@ public class CirclesGUI {
             public void actionPerformed(ActionEvent e) {
                 addButton.setEnabled(false);
                 modifyButton.setEnabled(false);
+                averageButton.setEnabled(false);
                 saveButton.setEnabled(true);
                 radField.setText(circles[nav].getRadius() + "");
                 colField.setText(circles[nav].getColor());
@@ -145,6 +148,7 @@ public class CirclesGUI {
                     addButton.setEnabled(true);
                     modifyButton.setEnabled(true);
                     saveButton.setEnabled(false);
+                    averageButton.setEnabled(true);
                     JOptionPane.showMessageDialog(null, "Changes to circle at index " + (nav + 1) + " saved successfully.");
                     navField.setText(circles[nav].toString());
                 }
@@ -160,7 +164,10 @@ public class CirclesGUI {
         circles[count++] = new Circle(8.8, "Red");
     }
     
-    private static double getAverage() { 
+    averageButton.addActionListener(new ActionListener() {
+            @Override
+    public void actionPerformed(ActionEvent e) {
+      private static double getAverage() { 
         double res = 0; 
         for(Circle circle : circles) {
             res += circle.getRadius(); 
