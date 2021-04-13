@@ -162,9 +162,9 @@ public class CirclesGUI {
     
     private static double getAverage() { 
         double res = 0; 
-        for(Circle[] circles : circle) {
+        for(Circle circle : circles) {
             res += circle.getRadius(); 
         }
-        return res; 
+        return res / circles.length;
     }
 }
