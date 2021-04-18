@@ -71,7 +71,6 @@ public class CirclesGUI {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
 
-        // action listener for the forward nav button
         upButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,7 +82,6 @@ public class CirclesGUI {
             }
         });
 
-        // action listener for the backward nav button
         downButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,7 +93,6 @@ public class CirclesGUI {
             }
         });
 
-        // action listener for add button
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,12 +111,12 @@ public class CirclesGUI {
                         radField.setText("");
                         colField.setText("");
                         JOptionPane.showMessageDialog(null, "Circle added successfully! Number of circles = " + count + ".");
+                        count++;
                     }
                 }
             }
         });
 
-        // action listener for modify button
         modifyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,7 +129,6 @@ public class CirclesGUI {
             }
         });
 
-        // action listener for save button
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -157,21 +153,20 @@ public class CirclesGUI {
     }
 
     private static void loadCircleData() {
-        circles[count++] = new Circle(3.4, "White");
-        circles[count++] = new Circle(4.5, "Black");
-        circles[count++] = new Circle(5.9, "Gray");
-        circles[count++] = new Circle(2.3, "Blue");
-        circles[count++] = new Circle(8.8, "Red");
+        circles[count++] = new Circle(5, "White");
+        circles[count++] = new Circle(7, "Black");
+        circles[count++] = new Circle(9, "Gray");
+        circles[count++] = new Circle(11, "Blue");
+        circles[count++] = new Circle(13, "Red");
     }
     
-    averageButton.addActionListener(new ActionListener() {
-            @Override
-    public void actionPerformed(ActionEvent e) {
-      private static double getAverage() { 
+    private static double getAverage() { 
         double res = 0; 
-        for(Circle circle : circles) {
-            res += circle.getRadius(); 
+        int counter = 0;
+        while (counter < count) {
+            res += circles[counter].getRadius(); 
         }
         return res / circles.length;
+        
     }
 }
