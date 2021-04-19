@@ -150,6 +150,19 @@ public class CirclesGUI {
                 }
             }
         });
+        
+        averageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double res = 0; 
+                int counter = 0;
+                while (counter < count) {
+                    res += circles[counter].getRadius(); 
+                    counter++;
+                }
+                JOptionPane.showMessageDialog(null, "The average of the circles is: " + res / circles.length);
+            }
+        });
     }
 
     private static void loadCircleData() {
@@ -159,18 +172,4 @@ public class CirclesGUI {
         circles[count++] = new Circle(11, "Blue");
         circles[count++] = new Circle(13, "Red");
     }
-    
-  private static double getAverage() { 
-    void res = 0; 
-    int counter = 0;
-    while (counter < count) {
-        res += circles[counter].getRadius(); 
-        counter++;
-    averageButton.addActionListener(e -> {
-    JOptionPane.showMessageDialog(null, "The average of the circles is: " + res / circles.length);
-});
-        
-    }
-    }
-    
 }
