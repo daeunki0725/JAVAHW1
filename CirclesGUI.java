@@ -161,12 +161,18 @@ public class CirclesGUI {
     }
     
     private static double getAverage() { 
-        double res = 0; 
-        int counter = 0;
-        while (counter < count) {
-            res += circles[counter].getRadius(); 
-        }
-        return res / circles.length;
+    double res = 0; 
+    int counter = 0;
+    while (counter < count) {
+        res += circles[counter].getRadius(); 
+        counter++;
+    averageButton.addActionListener(e -> {
+    double average = getAverage();
+    JOptionPane.showMessageDialog(mainFrame, "Average: " + average);
+});
         
     }
+    return res / counter;
+    }
+    
 }
