@@ -160,19 +160,17 @@ public class CirclesGUI {
         circles[count++] = new Circle(13, "Red");
     }
     
-    private static double getAverage() { 
-    double res = 0; 
+  private static double getAverage() { 
+    void res = 0; 
     int counter = 0;
     while (counter < count) {
         res += circles[counter].getRadius(); 
         counter++;
     averageButton.addActionListener(e -> {
-    double average = getAverage();
-    JOptionPane.showMessageDialog(mainFrame, "Average: " + average);
+    JOptionPane.showMessageDialog(null, "The average of the circles is: " + res / circles.length);
 });
         
     }
-    return res / counter;
     }
     
 }
