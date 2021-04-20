@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import acm.program.*;
 import acm.graphics.*;
 import java.util.Random;
+import acm.util.RandomGenerator;
+
 
   public class keyExample extends JPanel implements ActionListener, KeyListener{
     Timer t = new Timer(5, this);
