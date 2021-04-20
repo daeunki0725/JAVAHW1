@@ -2,6 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
+import java.awt.Color;
+import acm.program.*;
+import acm.graphics.*;
+import java.awt.Graphics;
+import acm.program.*;
+import acm.graphics.*;
+import java.util.Random;
 
   public class keyExample extends JPanel implements ActionListener, KeyListener{
     Timer t = new Timer(5, this);
@@ -18,22 +25,44 @@ import java.awt.geom.*;
       setFocusTraversalKeysEnabled(false);
 
     }
-   
+	private static final int N_CIRCLES = 10;
+
+	private static final double MIN_RADIUS = 5;
+	
+	private static final double MAX_RADIUS = 50;
+	
+	public void run() {
+	RandomGenerator rgen = RandomGenerator.getInstance();
+	
+	for (int i = 0; i < N_CIRCLES; i++) {
+	
+	double r = rgen.nextDouble(MIN_RADIUS, MAX_RADIUS);
+	double x = rgen.nextDouble(0, getWidth() - 2 * r);
+	double y = rgen.nextDouble(0, getHeight() - 2 * r);
+	
+	GOval circle = new GOval(x, y, 2 * r, 2 * r);
+	circle.setFilled(true);
+	circle.setColor(rgen.nextColor());
+	add(circle);
+	}
+	}
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
+    
       
       Graphics2D g2 = (Graphics2D) g;
       g2.setColor(Color.BLUE);
       g2.fill(new Rectangle2D.Double(x, y, 40, 40));
       
-	  	Rectangle box1 = new Rectangle(5, 10, 20, 30);
-	  	Rectangle box2 = new Rectangle(25, 10, 20, 30);
-	  	Rectangle box3 = new Rectangle(45, 10, 20, 30);
-
-	  	g2.draw(box1);
-	  	g2.draw(box2);
-	  	g2.draw(box3);
-       
+		Rectangle box1 = new Rectangle(5, 10, 20, 30);
+		Rectangle box2 = new Rectangle(25, 10, 20, 30);
+		Rectangle box3 = new Rectangle(45, 10, 20, 30);
+		
+		g2.draw(box1);
+		g2.draw(box2);
+		g2.draw(box3);
+	
+      
     }
     
 
@@ -89,8 +118,7 @@ import java.awt.geom.*;
     }
     public void keyReleased(KeyEvent e) {
     }
-    
-    
 
+			
 
   }
