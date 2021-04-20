@@ -26,6 +26,14 @@ import java.awt.geom.*;
       g2.setColor(Color.BLUE);
       g2.fill(new Rectangle2D.Double(x, y, 40, 40));
       
+	  	Rectangle box1 = new Rectangle(5, 10, 20, 30);
+	  	Rectangle box2 = new Rectangle(25, 10, 20, 30);
+	  	Rectangle box3 = new Rectangle(45, 10, 20, 30);
+
+	  	g2.draw(box1);
+	  	g2.draw(box2);
+	  	g2.draw(box3);
+       
     }
     
 
