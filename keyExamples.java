@@ -3,11 +3,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
 import java.awt.Color;
-import acm.program.*;
-import acm.graphics.*;
 import java.awt.Graphics; 
 import java.util.Random;
-import acm.util.RandomGenerator;
+
 
   public class keyExample extends JPanel implements ActionListener, KeyListener{
     Timer t = new Timer(5, this);
@@ -31,20 +29,25 @@ import acm.util.RandomGenerator;
 	private static final double MAX_RADIUS = 50;
 	
 	public void run() { 
-	RandomGenerator rgen = RandomGenerator.getInstance();
-	
+	Random gen = new Random();
+		
 	for (int i = 0; i < N_CIRCLES; i++) {
 	
-	double r = rgen.nextDouble(MIN_RADIUS, MAX_RADIUS);
-	double x = rgen.nextDouble(0, getWidth() - 2 * r);
-	double y = rgen.nextDouble(0, getHeight() - 2 * r);
+	double range = MAX_RADIUS - MIN_RADIUS;
+	double r = MIN_RADIUS + (gen.nextDouble() * range);
 	
-	GOval circle = new GOval(x, y, 2 * r, 2 * r);
+	double r = gen.nextDouble(MIN_RADIUS, MAX_RADIUS);
+	double x = gen.nextDouble(0, getWidth() - 2 * r);
+	double y = gen.nextDouble(0, getHeight() - 2 * r);
+	
+	Circle circle = new Circle(x, y, 2 * r, 2 * r);
 	circle.setFilled(true);
 	
-	int red = rgen.nextInt(256);
-	int green = rgen.nextInt(256);
-	int blue = rgen.nextInt(256);
+	
+	int red = gen.nextInt(256);
+	int green = gen.nextInt(256);
+	int blue = gen.nextInt(256);
+	
 	Color backColor = new Color(red, green, blue);
 	
 	pane.add(panel);
@@ -121,6 +124,14 @@ import acm.util.RandomGenerator;
       }
     }
    
+    public void keyTyped(KeyEvent e) {
+    }
+    public void keyReleased(KeyEvent e) {
+    }
+
+			
+
+  }
     public void keyTyped(KeyEvent e) {
     }
     public void keyReleased(KeyEvent e) {
