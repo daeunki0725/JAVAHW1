@@ -8,6 +8,8 @@ import java.util.Random;
 
 
   public class keyExample extends JPanel implements ActionListener, KeyListener{
+  public static void main(String[] args);
+  
     Timer t = new Timer(5, this);
     double x = 0, y = 0;
    
@@ -22,39 +24,45 @@ import java.util.Random;
       setFocusTraversalKeysEnabled(false);
 
     }
-	private static final int N_CIRCLES = 10;
+    
+    public class Circle{
+    	
+    	private int diameter;
+    private int x;
+    private int y;
 
-	private static final double MIN_RADIUS = 5;
-	
-	private static final double MAX_RADIUS = 50;
-	
-	public void run() { 
-	Random gen = new Random();
-		
-	for (int i = 0; i < N_CIRCLES; i++) {
-	
-	double range = MAX_RADIUS - MIN_RADIUS;
-	double r = MIN_RADIUS + (gen.nextDouble() * range);
-	
-	double r = gen.nextDouble(MIN_RADIUS, MAX_RADIUS);
-	double x = gen.nextDouble(0, getWidth() - 2 * r);
-	double y = gen.nextDouble(0, getHeight() - 2 * r);
-	
-	Circle circle = new Circle(x, y, 2 * r, 2 * r);
-	circle.setFilled(true);
-	
-	
-	int red = gen.nextInt(256);
-	int green = gen.nextInt(256);
-	int blue = gen.nextInt(256);
-	
-	Color backColor = new Color(red, green, blue);
-	
-	pane.add(panel);
+       public void render (Graphics page)
 
-	}
-	add(circle);
-	}
+         {
+
+           int count = 0;
+           int NumOfCircles =7;
+           int diameter;
+           int x, y;
+
+ 
+
+          Random generator = new Random( );
+
+          while (NumOfCircles <=7)
+
+          {
+
+          diameter = generator.nextInt(60);
+
+          x = generator.nextInt(300);
+          y= generator.nextInt(500);
+
+          page.setColor(new Color(generator.nextInt(256), generator.nextInt(256),+ generator.nextInt(256)));
+          page.fillOval(x, y, diameter, diameter);
+          page.setColor(Color.black);
+          page.drawOval (x, y, diameter, diameter);
+
+            }
+
+      }
+
+}
 
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
@@ -128,6 +136,7 @@ import java.util.Random;
     }
     public void keyReleased(KeyEvent e) {
     }
+
 			
 
   }
