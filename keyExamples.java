@@ -5,12 +5,9 @@ import java.awt.geom.*;
 import java.awt.Color;
 import acm.program.*;
 import acm.graphics.*;
-import java.awt.Graphics;
-import acm.program.*;
-import acm.graphics.*;
+import java.awt.Graphics; 
 import java.util.Random;
 import acm.util.RandomGenerator;
-
 
   public class keyExample extends JPanel implements ActionListener, KeyListener{
     Timer t = new Timer(5, this);
@@ -33,7 +30,7 @@ import acm.util.RandomGenerator;
 	
 	private static final double MAX_RADIUS = 50;
 	
-	public void run() {
+	public void run() { 
 	RandomGenerator rgen = RandomGenerator.getInstance();
 	
 	for (int i = 0; i < N_CIRCLES; i++) {
@@ -44,10 +41,18 @@ import acm.util.RandomGenerator;
 	
 	GOval circle = new GOval(x, y, 2 * r, 2 * r);
 	circle.setFilled(true);
-	circle.setColor(rgen.nextColor());
+	
+	int red = gen.nextInt(256);
+	int green = gen.nextInt(256);
+	int blue = gen.nextInt(256);
+	Color backColor = new Color(red, green, blue);
+	
+	pane.add(panel);
+
+	}
 	add(circle);
 	}
-	}
+
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
     
