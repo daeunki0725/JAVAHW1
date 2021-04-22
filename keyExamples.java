@@ -42,9 +42,9 @@ import acm.util.RandomGenerator;
 	GOval circle = new GOval(x, y, 2 * r, 2 * r);
 	circle.setFilled(true);
 	
-	int red = gen.nextInt(256);
-	int green = gen.nextInt(256);
-	int blue = gen.nextInt(256);
+	int red = rgen.nextInt(256);
+	int green = rgen.nextInt(256);
+	int blue = rgen.nextInt(256);
 	Color backColor = new Color(red, green, blue);
 	
 	pane.add(panel);
