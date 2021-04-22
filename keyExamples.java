@@ -8,12 +8,19 @@ import java.util.Random;
 
 
   public class keyExample extends JPanel implements ActionListener, KeyListener{
-  public static void main(String[] args);
   
     Timer t = new Timer(5, this);
     double x = 0, y = 0;
-   
     double changeX = 0, changeY = 0;
+    
+    public static void main(String args[]){
+	JFrame theGUI = new JFrame();
+	keyExample s = new keyExample();
+	theGUI.add(s);
+	theGUI.setVisible(true);
+	theGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	theGUI.setSize(600,400);
+}
 
     public keyExample() {
       t.start();
@@ -25,13 +32,14 @@ import java.util.Random;
 
     }
     
-    public class Circle{
+    
     	
-    	private int diameter;
+    private int diameter;
     private int x;
     private int y;
 
-       public void render (Graphics page)
+       public void render (Graphics page);
+
 
          {
 
@@ -62,11 +70,10 @@ import java.util.Random;
 
       }
 
-}
+		render(g);
 
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
-    
       
       Graphics2D g2 = (Graphics2D) g;
       g2.setColor(Color.BLUE);
@@ -138,5 +145,4 @@ import java.util.Random;
     }
 
 			
-
-  }
+	}
