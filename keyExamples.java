@@ -35,10 +35,8 @@ import java.util.Random;
     
     	
     private int diameter;
-    private int x;
-    private int y;
 
-       public void render (Graphics page);
+       public void render (Graphics page)
 
 
          {
@@ -69,8 +67,6 @@ import java.util.Random;
             }
 
       }
-
-		render(g);
 
     public void paintComponent(Graphics g) {
       super.paintComponent(g);
