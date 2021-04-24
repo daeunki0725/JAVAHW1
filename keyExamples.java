@@ -25,22 +25,18 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   public keyExample() {
     t.start();
     addKeyListener(this);
-
     setFocusable(true);
-
     setFocusTraversalKeysEnabled(false);
-
   }
 
   private int diameter;
 
   public static void render(Graphics page) {
+    Scanner sc = new Scanner(System.in);  
     int count = 0;
-    int NumOfCircles = 7;
+    int NumOfCircles = 1;
     int diameter;
     int x, y;
-
-    System.out.println("running render"); // flag
 
     Random generator = new Random();
 
@@ -50,10 +46,12 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
       x = generator.nextInt(300);
       y = generator.nextInt(500);
 
-      page.setColor(new Color(generator.nextInt(256), generator.nextInt(256), +generator.nextInt(256)));
+      page.setColor(new Color(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)));
       page.fillOval(x, y, diameter, diameter);
       page.setColor(Color.black);
       page.drawOval(x, y, diameter, diameter);
+      
+      NumOfCircles++;
     }
   }
 
@@ -75,7 +73,6 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   }
 
   public void actionPerformed(ActionEvent e) {
-    repaint();
     x += changeX;
     y += changeY;
     changeX = 0;
