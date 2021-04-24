@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.Scanner;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
@@ -25,8 +26,11 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   public keyExample() {
     t.start();
     addKeyListener(this);
+
     setFocusable(true);
+
     setFocusTraversalKeysEnabled(false);
+
   }
 
   private int diameter;
@@ -38,6 +42,8 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
     int diameter;
     int x, y;
 
+    System.out.println("running render"); // flag
+
     Random generator = new Random();
 
     while (NumOfCircles <= 7) {
@@ -48,6 +54,9 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
 
       page.setColor(new Color(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)));
       page.fillOval(x, y, diameter, diameter);
+      System.out.println("paused" + NumOfCircles);
+//       sc.nextInt();
+      System.out.println("continuing");
       page.setColor(Color.black);
       page.drawOval(x, y, diameter, diameter);
       
@@ -73,6 +82,7 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   }
 
   public void actionPerformed(ActionEvent e) {
+//     repaint();
     x += changeX;
     y += changeY;
     changeX = 0;
