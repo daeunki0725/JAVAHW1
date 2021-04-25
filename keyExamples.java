@@ -1,6 +1,6 @@
 import javax.swing.*;
-import java.util.Scanner;
 import java.awt.*;
+import java.util.Scanner;
 import java.awt.event.*;
 import java.awt.geom.*;
 import java.awt.Color;
@@ -12,6 +12,7 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   Timer t = new Timer(5, this);
   double x = 0, y = 0;
   double changeX = 0, changeY = 0;
+  int f = 0;
 
   public static void main(String args[]) {
     JFrame theGUI = new JFrame();
@@ -20,47 +21,30 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
     theGUI.setVisible(true);
     theGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     theGUI.setSize(600, 400);
-    render(theGUI.getGraphics());
+    render(theGUI.getGraphics(), theGUI.getWidth());
   }
 
   public keyExample() {
     t.start();
     addKeyListener(this);
-
     setFocusable(true);
-
     setFocusTraversalKeysEnabled(false);
 
   }
 
-  private int diameter;
-
-  public static void render(Graphics page) {
-    Scanner sc = new Scanner(System.in);  
-    int count = 0;
-    int NumOfCircles = 1;
+  public static void render(Graphics page, int width) {
     int diameter;
-    int x, y;
-
-    System.out.println("running render"); // flag
+    double x;
 
     Random generator = new Random();
+    for (int i = 0; i < 7; i++) {
+        diameter = generator.nextInt(60) + 20;
 
-    while (NumOfCircles <= 7) {
-      diameter = generator.nextInt(60);
-
-      x = generator.nextInt(300);
-      y = generator.nextInt(500);
-
-      page.setColor(new Color(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)));
-      page.fillOval(x, y, diameter, diameter);
-      System.out.println("paused" + NumOfCircles);
-//       sc.nextInt();
-      System.out.println("continuing");
-      page.setColor(Color.black);
-      page.drawOval(x, y, diameter, diameter);
-      
-      NumOfCircles++;
+        page.setColor(new Color(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)));
+        x = (double) i / 7 * (double) width;
+        page.fillOval((int) x, 30, diameter, diameter);
+        page.setColor(Color.black);
+        page.drawOval((int) x, 30, diameter, diameter);
     }
   }
 
@@ -78,11 +62,14 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
     g2.draw(box1);
     g2.draw(box2);
     g2.draw(box3);
-
   }
 
   public void actionPerformed(ActionEvent e) {
-//     repaint();
+    Scanner sc = new Scanner(System.in);
+    if (f == 0) {
+      f = sc.nextInt();
+    }
+    repaint();
     x += changeX;
     y += changeY;
     changeX = 0;
