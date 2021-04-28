@@ -13,10 +13,12 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   double x = 0, y = 30;
   double changeX = 0, changeY = 0;
   int f = 0;
+  int width;
 
   public static void main(String args[]) {
     JFrame theGUI = new JFrame();
-    keyExample s = new keyExample();
+    width = theGUI.getWidth();
+    keyExamples = new keyExample();
     theGUI.add(s);
     theGUI.setVisible(true);
     theGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,27 +27,12 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   }
 
   public keyExample() {
+
     t.start();
     addKeyListener(this);
     setFocusable(true);
     setFocusTraversalKeysEnabled(false);
 
-  }
-
-  public static void render(Graphics page, int width) {
-    int diameter;
-    double x;
-
-    Random generator = new Random();
-    for (int i = 0; i < 7; i++) {
-        diameter = generator.nextInt(60) + 20;
-
-        page.setColor(new Color(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)));
-        x = (double) i / 7 * (double) width;
-        page.fillOval((int) x, 30, diameter, diameter);
-        page.setColor(Color.black);
-        page.drawOval((int) x, 30, diameter, diameter);
-    }
   }
 
   public void paintComponent(Graphics g) {
@@ -59,9 +46,25 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
     Rectangle box2 = new Rectangle(25, 10, 20, 30);
     Rectangle box3 = new Rectangle(45, 10, 20, 30);
 
+    int diameter;
+    double x;
+
+    Random generator = new Random();
+
+    if (i == 8) {
+      i = 0;
+    }
+
+    diameter = generator.nextInt(60) + 20;
+
+    g2.setColor(new Color(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)));
+    x = (double) i / 7 * (double) width;
+    g2.fill(new Ellipse2D.Double((int) x, 30, diameter, diameter));
+
     g2.draw(box1);
     g2.draw(box2);
     g2.draw(box3);
+
   }
 
   public void actionPerformed(ActionEvent e) {
