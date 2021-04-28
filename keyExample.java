@@ -12,18 +12,15 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   Timer t = new Timer(5, this);
   double x = 0, y = 30;
   double changeX = 0, changeY = 0;
-  int f = 0;
-  int width;
+  int f = 0, i = 0;
 
   public static void main(String args[]) {
     JFrame theGUI = new JFrame();
-    width = theGUI.getWidth();
-    keyExamples = new keyExample();
+    keyExample s = new keyExample();
     theGUI.add(s);
     theGUI.setVisible(true);
     theGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     theGUI.setSize(600, 400);
-    render(theGUI.getGraphics(), theGUI.getWidth());
   }
 
   public keyExample() {
@@ -45,6 +42,10 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
     Rectangle box1 = new Rectangle(5, 10, 20, 30);
     Rectangle box2 = new Rectangle(25, 10, 20, 30);
     Rectangle box3 = new Rectangle(45, 10, 20, 30);
+    
+    g2.draw(box1);
+    g2.draw(box2);
+    g2.draw(box3);
 
     int diameter;
     double x;
@@ -58,20 +59,14 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
     diameter = generator.nextInt(60) + 20;
 
     g2.setColor(new Color(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)));
-    x = (double) i / 7 * (double) width;
+    x = (double) i / 7 * (double) 400;
     g2.fill(new Ellipse2D.Double((int) x, 30, diameter, diameter));
-
-    g2.draw(box1);
-    g2.draw(box2);
-    g2.draw(box3);
-
+    
+    i++;
   }
 
   public void actionPerformed(ActionEvent e) {
     Scanner sc = new Scanner(System.in);
-    if (f == 0) {
-      f = sc.nextInt();
-    }
     repaint();
     x += changeX;
     y += changeY;
