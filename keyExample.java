@@ -12,7 +12,8 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
   Timer t = new Timer(5, this);
   double x = 0, y = 30;
   double changeX = 0, changeY = 0;
-  int f = 0, i = 0;
+  int f = 0;
+  int[][] values = new int[7][6];
 
   public static void main(String args[]) {
     JFrame theGUI = new JFrame();
@@ -29,9 +30,21 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
     addKeyListener(this);
     setFocusable(true);
     setFocusTraversalKeysEnabled(false);
-
+    setValues(0, 7);
   }
 
+  private void setValues(int start, int finish) { 
+    Random generator = new Random();
+    for (int i = start; i < finish; i++) { 
+        values[i][0] = generator.nextInt(60) + 20; // size 
+        values[i][1] = 0; // position at zero always
+        values[i][2] = generator.nextInt(2) + 1; // speed can be between 2 < x < 4
+        values[i][3] = generator.nextInt(256); // R
+        values[i][4] = generator.nextInt(256); // G
+        values[i][5] = generator.nextInt(256); // B
+    } 
+  } 
+  
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
 
@@ -46,23 +59,17 @@ public class keyExample extends JPanel implements ActionListener, KeyListener {
     g2.draw(box1);
     g2.draw(box2);
     g2.draw(box3);
-
-    int diameter;
+    
     double x;
 
-    Random generator = new Random();
-
-    if (i == 8) {
-      i = 0;
+    for (int i = 0; i < 7; i++) {
+        g2.setColor(new Color(values[i][3], values[i][4], values[i][5]));
+        x = (double) i / 7 * (double) 600;
+        values[i][1] += values[i][2];
+        g2.fill(new Ellipse2D.Double(x, values[i][1], values[i][0], values[i][0]));
+        
+        if (values[i][1] >= 400) setValues(i, i + 1); 
     }
-
-    diameter = generator.nextInt(60) + 20;
-
-    g2.setColor(new Color(generator.nextInt(256), generator.nextInt(256), generator.nextInt(256)));
-    x = (double) i / 7 * (double) 400;
-    g2.fill(new Ellipse2D.Double((int) x, 30, diameter, diameter));
-    
-    i++;
   }
 
   public void actionPerformed(ActionEvent e) {
